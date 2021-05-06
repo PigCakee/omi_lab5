@@ -63,6 +63,9 @@ def build_model():
   x = EfficientNetB0(include_top=False, weights='imagenet', input_tensor = x)
   x.trainable = False
   x = tf.keras.layers.GlobalAveragePooling2D()(x.output)
+  x = layers.BatchNormalization()(x)
+  top_dropout_rate = 0.2
+  x = layers.Dropout(top_dropout_rate, name="top_dropout")(x)
   outputs = tf.keras.layers.Dense(NUM_CLASSES, activation=tf.keras.activations.softmax)(x)
   return tf.keras.Model(inputs=inputs, outputs=outputs)
 
