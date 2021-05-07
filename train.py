@@ -62,10 +62,7 @@ def build_model():
   x = data_augmentation(inputs)
   x = EfficientNetB0(include_top=False, weights='imagenet', input_tensor = x)
   x.trainable = False
-  x = tf.keras.layers.GlobalAveragePooling2D()(x.output)
-  x = layers.BatchNormalization()(x)
-  top_dropout_rate = 0.2
-  x = layers.Dropout(top_dropout_rate, name="top_dropout")(x)
+  x = tf.keras.layers.GlobalAveragePooling2D()(x.output
   outputs = tf.keras.layers.Dense(NUM_CLASSES, activation=tf.keras.activations.softmax)(x)
   return tf.keras.Model(inputs=inputs, outputs=outputs)
 
@@ -94,6 +91,27 @@ def main():
     validation_data=validation_dataset,
     callbacks=[
       tf.keras.callbacks.TensorBoard(log_dir)
+    ]
+  )
+  
+def unfreeze_model(model):
+  for layer in model.layers:
+    if not isinstance(layer, tf.keras.layers.BatchNormalization):
+      layer.trainable = True
+  
+  unfreeze_model(model)
+
+  model.compile(
+    optimizer=tf.optimizers.Adam(lr=1e-5),
+    loss=tf.keras.losses.categorical_crossentropy,
+    metrics=[tf.keras.metrics.categorical_accuracy],
+  )
+  model.fit(
+    train_dataset,
+    epochs=20,
+    validation_data=validation_dataset,
+    callbacks=[
+      tf.keras.callbacks.TensorBoard(log_dir),
     ]
   )
 
