@@ -101,6 +101,7 @@ def unfreeze_model(model):
   
   unfreeze_model(model)
 
+  log_dir='{}/f101-{}'.format(LOG_DIR, time.time())
   model.compile(
     optimizer=tf.optimizers.Adam(lr=1e-5),
     loss=tf.keras.losses.categorical_crossentropy,
