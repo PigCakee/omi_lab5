@@ -102,7 +102,7 @@ def main():
 
   log_dir='{}/f101-{}'.format(LOG_DIR, time.time())
   model.compile(
-    optimizer=tf.optimizers.Adam(lr=1e-7),
+    optimizer=tf.optimizers.Adam(lr=1e-9),
     loss=tf.keras.losses.categorical_crossentropy,
     metrics=[tf.keras.metrics.categorical_accuracy],
   )
