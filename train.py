@@ -14,6 +14,7 @@ import time
 from tensorflow.python import keras as keras
 from tensorflow.python.keras.callbacks import LearningRateScheduler
 from tensorflow.keras.applications import EfficientNetB0
+from tensorflow.keras.layers.experimental import preprocessing
 
 # Avoid greedy memory allocation to allow shared GPU usage
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -82,7 +83,7 @@ def main():
   model = build_model()
 
   model.compile(
-    optimizer=tf.optimizers.Adam(0.001),
+    optimizer=tf.optimizers.Adam(lr=0.001),
     loss=tf.keras.losses.categorical_crossentropy,
     metrics=[tf.keras.metrics.categorical_accuracy],
   )
