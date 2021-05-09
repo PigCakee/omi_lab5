@@ -14,7 +14,6 @@ import time
 from tensorflow.python import keras as keras
 from tensorflow.python.keras.callbacks import LearningRateScheduler
 from tensorflow.keras.applications import EfficientNetB0
-from tensorflow.keras.layers.experimental import preprocessing
 
 # Avoid greedy memory allocation to allow shared GPU usage
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -28,7 +27,6 @@ NUM_CLASSES = 101
 RESIZE_TO = 224
 TRAIN_SIZE = 101000
 
-
 def parse_proto_example(proto):
   keys_to_features = {
     'image/encoded': tf.io.FixedLenFeature((), tf.string, default_value=''),
@@ -39,8 +37,8 @@ def parse_proto_example(proto):
   example['image'] = tf.image.convert_image_dtype(example['image'], dtype=tf.uint8)
   example['image'] = tf.image.resize(example['image'], tf.constant([RESIZE_TO, RESIZE_TO]))
   return example['image'], tf.one_hot(example['image/label'], depth=NUM_CLASSES)
-
-
+  
+  
 def create_dataset(filenames, batch_size):
   """Create dataset from tfrecords file
   :tfrecords_files: Mask to collect tfrecords file of dataset
@@ -50,7 +48,7 @@ def create_dataset(filenames, batch_size):
     .map(parse_proto_example, num_parallel_calls=tf.data.AUTOTUNE)\
     .batch(batch_size)\
     .prefetch(tf.data.AUTOTUNE)
-
+    
 data_augmentation = tf.keras.Sequential(
     [
      preprocessing.RandomRotation(0.1, fill_mode='nearest', interpolation='bilinear', seed=1, name=None, fill_value=0.0)
@@ -66,6 +64,11 @@ def build_model():
   outputs = tf.keras.layers.Dense(NUM_CLASSES, activation=tf.keras.activations.softmax)(x)
   return tf.keras.Model(inputs=inputs, outputs=outputs)
 
+def unfreeze_model(model):
+  for layer in model.layers:
+    if not isinstance(layer, tf.keras.layers.BatchNormalization):
+      layer.trainable = True
+
 def main():
   args = argparse.ArgumentParser()
   args.add_argument('--train', type=str, help='Glob pattern to collect train tfrecord files, use single quote to escape *')
@@ -79,7 +82,7 @@ def main():
   model = build_model()
 
   model.compile(
-    optimizer=tf.optimizers.Adam(lr=0.001),
+    optimizer=tf.optimizers.Adam(0.001),
     loss=tf.keras.losses.categorical_crossentropy,
     metrics=[tf.keras.metrics.categorical_accuracy],
   )
@@ -93,17 +96,12 @@ def main():
       tf.keras.callbacks.TensorBoard(log_dir)
     ]
   )
-  
-def unfreeze_model(model):
-  for layer in model.layers:
-    if not isinstance(layer, tf.keras.layers.BatchNormalization):
-      layer.trainable = True
-  
+
   unfreeze_model(model)
 
   log_dir='{}/f101-{}'.format(LOG_DIR, time.time())
   model.compile(
-    optimizer=tf.optimizers.Adam(lr=1e-5),
+    optimizer=tf.optimizers.Adam(lr=1e-6),
     loss=tf.keras.losses.categorical_crossentropy,
     metrics=[tf.keras.metrics.categorical_accuracy],
   )
