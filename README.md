@@ -1,5 +1,5 @@
-Лабораторная работа #5
-2. С использованием примера, техники обучения Transfer Learning, оптимальной политики изменения темпа обучения, аугментации данных с оптимальными настройками обучить нейронную сеть EfficientNet-B0 (предварительно обученную на базе изображений imagenet) для решения задачи классификации изображений Food-101
+# Лабораторная работа #5
+## 2. С использованием примера, техники обучения Transfer Learning, оптимальной политики изменения темпа обучения, аугментации данных с оптимальными настройками обучить нейронную сеть EfficientNet-B0 (предварительно обученную на базе изображений imagenet) для решения задачи классификации изображений Food-101
 
 По результатам прошлой рабораторной работы (№4) наилучшие результаты были достигнуты в следюущем случае:
 Фиксированный темп обучения 0.001
@@ -17,6 +17,7 @@ data_augmentation = tf.keras.Sequential(
 При использовании вышеперечисленных техник удалось достичь максимальной точности в 66.9%
 
 Transfer Learning results:
+
 tensorboard.dev/experiment/vvCqHN97RXqbAVmNiZK0Og/#scalars&runSelectionState=eyJmMTAxLTE2MTk2MzM4MDAuMzk4ODY3NC90cmFpbiI6ZmFsc2UsImYxMDEtMTYxOTYzMzgwMC4zOTg4Njc0L3ZhbGlkYXRpb24iOmZhbHNlLCJmMTAxLTE2MTk2MzUzODIuMDI3NjEzNi90cmFpbiI6ZmFsc2UsImYxMDEtMTYxOTYzNTM4Mi4wMjc2MTM2L3ZhbGlkYXRpb24iOmZhbHNlLCJmMTAxLTE2MTk2MzY4NDQuMDA4MzkyOC90cmFpbiI6dHJ1ZSwiZjEwMS0xNjE5NjM2ODQ0LjAwODM5MjgvdmFsaWRhdGlvbiI6dHJ1ZX0%3D
 
 #### epoch_categorical_accuracy
@@ -25,7 +26,7 @@ tensorboard.dev/experiment/vvCqHN97RXqbAVmNiZK0Og/#scalars&runSelectionState=eyJ
 #### epoch_loss
 <img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_loss_3_c_fill_mode_nearest.svg">
 
-3. С использованием техники обучения Fine Tuning дополнительно обучить нейронную сеть EfficientNet-B0 предварительно обученную в пункте 2
+## 3. С использованием техники обучения Fine Tuning дополнительно обучить нейронную сеть EfficientNet-B0 предварительно обученную в пункте 2
 
 Разблокируем веса
 ```
@@ -56,7 +57,7 @@ unfreeze_model(model)
 
 В ходе исследований было протестированно 4 различных значения параметра темпа обучения:
 
-1. lr=1e-6
+## 1. lr=1e-6
 
 Fine Tuning results
 https://tensorboard.dev/experiment/VjcnjWc7Q0yGbipzds2DIw/#scalars
@@ -69,7 +70,7 @@ https://tensorboard.dev/experiment/VjcnjWc7Q0yGbipzds2DIw/#scalars
 
 График точности с первой же эпохи пошел резко вниз, ровно как график потерь пошел вверх. Делаем вывод, что параметр подобран неверно и понижаем его. 
 
-2. lr=1e-9
+## 2. lr=1e-9
 
 Fine Tuning results
 https://tensorboard.dev/experiment/Spm5xe1DRVyDA0WqbeqRwA/#scalars&runSelectionState=eyJmMTAxLTE2MjA1NjM4NzEuMDYzMTU4OC92YWxpZGF0aW9uIjpmYWxzZSwiZjEwMS0xNjIwNTYzODcxLjA2MzE1ODgvdHJhaW4iOmZhbHNlfQ%3D%3D
@@ -82,7 +83,7 @@ https://tensorboard.dev/experiment/Spm5xe1DRVyDA0WqbeqRwA/#scalars&runSelectionS
 
 Графики практически не двигаются, а значит значение параметра слишком сильно занижено. Повышаем в 10 раз.
 
-3. lr=1e-8
+## 3. lr=1e-8
 
 Fine Tuning results
 https://tensorboard.dev/experiment/PRLR0NfGTru4CQdMPP358w/#scalars&runSelectionState=eyJmMTAxLTE2MjA1Njc1OTQuMjM1MjIyNi92YWxpZGF0aW9uIjpmYWxzZSwiZjEwMS0xNjIwNTY3NTk0LjIzNTIyMjYvdHJhaW4iOmZhbHNlfQ%3D%3D
@@ -95,7 +96,7 @@ https://tensorboard.dev/experiment/PRLR0NfGTru4CQdMPP358w/#scalars&runSelectionS
 
 Графики практически не двигаются, но уже видно тенденцию на улучшение. Повышаем еще в 10 раз.
 
-4. lr=1e-7
+## 4. lr=1e-7
 
 Fine Tuning results
 https://tensorboard.dev/experiment/AACxk4ErTD2Y83lv0UOiJw/#scalars&runSelectionState=eyJmMTAxLTE2MjA1OTU3NTEuMzYzMDkyNC90cmFpbiI6dHJ1ZSwiZjEwMS0xNjIwNTk1NzUxLjM2MzA5MjQvdmFsaWRhdGlvbiI6dHJ1ZSwiZjEwMS0xNjIwNTkyNzc1Ljc1NTE3NjMvdmFsaWRhdGlvbiI6ZmFsc2UsImYxMDEtMTYyMDU5Mjc3NS43NTUxNzYzL3RyYWluIjpmYWxzZX0%3D
