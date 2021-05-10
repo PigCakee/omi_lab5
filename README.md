@@ -63,10 +63,10 @@ Fine Tuning results
 https://tensorboard.dev/experiment/VjcnjWc7Q0yGbipzds2DIw/#scalars
 
 #### epoch_categorical_accuracy
-<img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_categorical_accuracy_1e-6.svg">
+<img src="https://raw.githubusercontent.com/PigCakee/omi_lab5/main/epoch_categorical_accuracy_1e-6.svg">
 
 #### epoch_loss
-<img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_loss_1e-6.svg">
+<img src="https://raw.githubusercontent.com/PigCakee/omi_lab5/main/epoch_loss_1e-6.svg">
 
 График точности с первой же эпохи пошел резко вниз, ровно как график потерь пошел вверх. Делаем вывод, что параметр подобран неверно и понижаем его. 
 
@@ -76,10 +76,10 @@ Fine Tuning results
 https://tensorboard.dev/experiment/Spm5xe1DRVyDA0WqbeqRwA/#scalars&runSelectionState=eyJmMTAxLTE2MjA1NjM4NzEuMDYzMTU4OC92YWxpZGF0aW9uIjpmYWxzZSwiZjEwMS0xNjIwNTYzODcxLjA2MzE1ODgvdHJhaW4iOmZhbHNlfQ%3D%3D
 
 #### epoch_categorical_accuracy
-<img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_categorical_accuracy_1e-9.svg">
+<img src="https://raw.githubusercontent.com/PigCakee/omi_lab5/main/epoch_categorical_accuracy_1e-9.svg">
 
 #### epoch_loss
-<img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_loss_1e-9.svg">
+<img src="https://raw.githubusercontent.com/PigCakee/omi_lab5/main/epoch_loss_1e-9.svg">
 
 Графики практически не двигаются, а значит значение параметра слишком сильно занижено. Повышаем в 10 раз.
 
@@ -89,10 +89,10 @@ Fine Tuning results
 https://tensorboard.dev/experiment/PRLR0NfGTru4CQdMPP358w/#scalars&runSelectionState=eyJmMTAxLTE2MjA1Njc1OTQuMjM1MjIyNi92YWxpZGF0aW9uIjpmYWxzZSwiZjEwMS0xNjIwNTY3NTk0LjIzNTIyMjYvdHJhaW4iOmZhbHNlfQ%3D%3D
 
 #### epoch_categorical_accuracy
-<img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_categorical_accuracy_1e-8.svg">
+<img src="https://raw.githubusercontent.com/PigCakee/omi_lab5/main/epoch_categorical_accuracy_1e-8.svg">
 
 #### epoch_loss
-<img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_loss_1e-8.svg">
+<img src="https://raw.githubusercontent.com/PigCakee/omi_lab5/main/epoch_loss_1e-8.svg">
 
 Графики практически не двигаются, но уже видно тенденцию на улучшение. Повышаем еще в 10 раз.
 
@@ -102,10 +102,10 @@ Fine Tuning results
 https://tensorboard.dev/experiment/AACxk4ErTD2Y83lv0UOiJw/#scalars&runSelectionState=eyJmMTAxLTE2MjA1OTU3NTEuMzYzMDkyNC90cmFpbiI6dHJ1ZSwiZjEwMS0xNjIwNTk1NzUxLjM2MzA5MjQvdmFsaWRhdGlvbiI6dHJ1ZSwiZjEwMS0xNjIwNTkyNzc1Ljc1NTE3NjMvdmFsaWRhdGlvbiI6ZmFsc2UsImYxMDEtMTYyMDU5Mjc3NS43NTUxNzYzL3RyYWluIjpmYWxzZX0%3D
 
 #### epoch_categorical_accuracy
-<img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_categorical_accuracy_1e-7.svg">
+<img src="https://raw.githubusercontent.com/PigCakee/omi_lab5/main/epoch_categorical_accuracy_1e-7.svg">
 
 #### epoch_loss
-<img src="https://raw.githubusercontent.com/PigCakee/omi_lab4/main/epoch_loss_1e-7.svg">
+<img src="https://raw.githubusercontent.com/PigCakee/omi_lab5/main/epoch_loss_1e-7.svg">
 
 Наивысшая точность, которую удалось достичь в этом случае - 67.5%, что улучшило результаты Transfer Learning на 0.6% (важно отметить, что сеть также сразу начала переобучаться, о чем свидетельствует растущий график потерь)
 
